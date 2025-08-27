@@ -61,10 +61,3 @@ def parse(s=""):
 
 
     return adj_list
-        
-
-print(parse("abs(two_sum(\"a\",\"b\"),prob(blah(\"a\")))"))
-
-    
-
-

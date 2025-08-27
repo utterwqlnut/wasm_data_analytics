@@ -2,6 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from parsing.parser import parse
 
 # Main File detailing UI
 
@@ -14,9 +15,7 @@ if file is not None:
     df = pd.read_csv(file)
 
     if len(input)>0:
-        fig,ax = plt.subplots()
-        ax.plot([i for i in range(1,12)])
-        st.pyplot(fig)
+        st.text(parse(input))
     else:
         table = st.table(df.head())
 

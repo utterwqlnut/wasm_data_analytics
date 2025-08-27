@@ -15,7 +15,7 @@ if file is not None:
     df = pd.read_csv(file)
 
     if len(input)>0:
-        st.text(parse(input))
+        ast = st.text(parse(input))
     else:
         table = st.table(df.head())
 

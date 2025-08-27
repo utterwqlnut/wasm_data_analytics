@@ -1,8 +1,3 @@
-class CommandParsed:
-    def __init__(self,name,parameters):
-        self.name = name
-        self.parameters = parameters
-
 def parse(s=""):
     parts = []
     commands = []

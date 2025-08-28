@@ -17,24 +17,34 @@
     <div id="root"></div>
     <script type="module">
       import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@0.83.0/build/stlite.js";
+      mount({
+        requirements: [
+          "matplotlib",
+          "statsmodels",
+          "numpy",
+          "scikit-learn",
+          "scipy"
+        ], // Install extra packages
+        entrypoint: "src/main.py",        // Runs main.py
+        files: {
+          "src/main.py": { url: "src/main.py" },
 
-      mount(
-        {
-          requirements: ["matplotlib"], // Install extra packages
-          entrypoint: "main.py",       // Now runs hello.py
-          files: {
-            "main.py": {
-              url: "src/main.py"           // Loads from same server/relative path
-            },
-            "parsing/parser.py": { url: "src/parsing/parser.py" }
-          },
-          streamlitConfig: {
-            "client.toolbarMode": "viewer",
-            "server.maxUploadSize": 1028,
-          },
+          "src/tools/__init__.py": { url: "src/tools/__init__.py" },
+          "src/tools/command_builder.py": { url: "src/tools/command_builder.py" },
+          "src/tools/commands.py": { url: "src/tools/commands.py" },
+          "src/tools/types_.py": { url: "src/tools/types_.py" },
+          "src/tools/command_ast_evaluator.py": { url: "src/tools/command_ast_evaluator.py" },
+
+          "src/parsing/__init__.py": { url: "src/parsing/__init__.py" },
+          "src/parsing/parser.py": { url: "src/parsing/parser.py" }
         },
-        document.getElementById("root")
-      );
+
+        streamlitConfig: {
+          "client.toolbarMode": "viewer",
+          "server.maxUploadSize": 1028
+        },
+      });
+      document.getElementById("root")
     </script>
   </body>
 </html>

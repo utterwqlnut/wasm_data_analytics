@@ -3,33 +3,34 @@ def parse(s=""):
     commands = []
     literal_mode=False
     curr = ""
+    count = 0
     # Split up syntax and be whitespace robust, account for multiple edge cases
     for i in range(len(s)):
-        if s[i]=="\"" and literal_mode==False:
-            literal_mode=True
-        elif s[i]=="\"" and literal_mode==True:
-            literal_mode=False
+        if s[i] == '"':
+            literal_mode = not literal_mode
 
         if s[i]==' ' and not literal_mode:
             continue
+        
         if s[i]=='(':
-            parts.append(curr)
+            parts.append(curr+'_'+str(len(parts)))
             parts.append(s[i])
             curr=""
         elif s[i]==')':
             if '\"' in curr:
-                parts.append(curr)
+                parts.append(curr+'_'+str(len(parts)))
             parts.append(s[i])
             curr=""
         elif s[i]==',':
             if curr!="":
-                parts.append(curr)
+                parts.append(curr+'_'+str(len(parts)))
                 curr = ""
-        elif s[i]!=' ':
+        else:
             curr+=s[i]
 
+
     for i in range(len(parts)):
-        if parts[i]!='(' and parts[i]!=')' and "\"" not in parts[i]:
+        if parts[i]!='(' and parts[i]!=')':
             commands.append(parts[i])
     
     # Build mini abstract syntax tree in adjacency list format via a stack
@@ -51,8 +52,11 @@ def parse(s=""):
         
         elif parts[i]==')':
             stack_outer.pop()
+
         else:
             adj_list[stack_outer[-1]].append(parts[i])
 
 
     return adj_list
+
+print(parse("plot(line(\"Year\",\"Value\"))"))

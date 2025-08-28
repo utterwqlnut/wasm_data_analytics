@@ -15,13 +15,8 @@ class Points:
 
 class Lines:
     # Another simple wrapper class
-    def __init__(self,points):
-        if isinstance(points,Points):
-            self.df = points.get_points()
-        elif isinstance(points,pd.DataFrame):
-            self.df = points
-        else:
-            raise TypeError("Line expectes points or dataframe as parameter")
+    def __init__(self,points: pd.DataFrame):
+        self.df=points
     
     def get_line(self):
         return self.df
@@ -31,16 +26,9 @@ class Lines:
         
 class Distribution:
     # Another simple wrapper class
-    def __init__(self,points,bins):
-        if isinstance(points,Points):
-            self.df = points.get_points()
-        elif isinstance(points,pd.DataFrame):
-            self.df = points
-        else:
-            raise TypeError("Line expectes points or dataframe as parameter")
+    def __init__(self,points: pd.DataFrame):
+        self.df=points
         
-        data = self.df.values
-
     def get_distribution(self):
             return self.df
         

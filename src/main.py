@@ -7,7 +7,7 @@ from tools.command_ast_evaluator import AstEvaluator
 from tools.command_builder import Builder
 # Main File detailing UI
 
-st.title("Blazingly Fast Data Analytics")
+st.title("Blazingly Fast Data Analytics🔥🔥")
 
 file = st.file_uploader("Upload CSV Here")
 

@@ -16,8 +16,16 @@ if file is not None:
     df = pd.read_csv(file)
     ase = AstEvaluator(Builder(df))
     if len(input)>0:
-        ast = parse(input)
-        result = ase.ast_evaluator_main(ast)
+        try:
+            ast = parse(input)
+        except Exception:
+            st.text('Error parsing values for AST, make sure your inputted command syntax is correct')
+            
+        try:
+            result = ase.ast_evaluator_main(ast)
+        except:
+            st.text('Error completing command, double check input fields')
+
         if result != None:
             st.markdown('### Result: '+str(result))
     else:

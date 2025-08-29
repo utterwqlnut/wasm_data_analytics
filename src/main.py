@@ -20,13 +20,11 @@ if file is not None:
             ast = parse(input)
         except Exception:
             st.text('Error parsing values for AST, make sure your inputted command syntax is correct')
-            
         try:
             result = ase.ast_evaluator_main(ast)
+            if result != None:
+                st.markdown('### Result: '+str(result))
         except:
             st.text('Error completing command, double check input fields')
-
-        if result != None:
-            st.markdown('### Result: '+str(result))
     else:
         table = st.table(df.head())

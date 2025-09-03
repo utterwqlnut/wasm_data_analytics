@@ -124,9 +124,9 @@ def kl_divergence(dist: types_.Distribution,dist2: types_.Distribution,bins):
     density_B, _ = np.histogram(df2, bins=bin_edges, density=True)
 
     dx = bin_edges[1]-bin_edges[0]
-
-    prob_A = density_A*dx
-    prob_B = density_B*dx
+    eps = 1e-9
+    prob_A = density_A*dx+eps # Prevent inf when prob is 0
+    prob_B = density_B*dx+eps
 
     # Compute KL divergence
     kl_div = stats.entropy(prob_A, prob_B)  # KL(A || B)
